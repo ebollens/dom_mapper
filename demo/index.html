@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Polyfills for ES5 -->
+    <script type="text/javascript" src="../src/mdn/polyfill/array.prototype.filter.js"></script>
+    <script type="text/javascript" src="../src/mdn/polyfill/array.prototype.map.js"></script>
+    <script type="text/javascript" src="../src/mdn/polyfill/array.prototype.for_each.js"></script>
+
+    <!-- CSS specificity -->
+    <script type="text/javascript" src="../node_modules/specificity/specificity.js"></script>
+    <script type="text/javascript" src="../src/specificity/compare.js"></script>
+
+    <!-- DOM mapper -->
+    <script type="text/javascript" src="../src/dom_mapper/core.js"></script>
+    <script type="text/javascript" src="../src/dom_mapper/rule/role.js"></script>
+
+    <!-- ARIA mappings -->
+    <script type="text/javascript" src="../src/aria_mappings/core.js"></script>
+    <script type="text/javascript" src="../src/aria_mappings/html5/core.js"></script>
+    <script type="text/javascript" src="../src/aria_mappings/html5/landmarks.js"></script>
+
+</head>
+<body>
+
+<header>
+    <h1>Page Header</h1>
+</header>
+
+<main>
+    <header>
+        <h2>Section Header</h2>
+    </header>
+    <nav>
+        <h2>Regular Nav</h2>
+    </nav>
+    <nav class="search">
+        <h2>Search Nav</h2>
+    </nav>
+    <nav class="no-role">
+        <h2>No Role</h2>
+    </nav>
+    <aside>
+        <h1>Not Complementary</h1>
+    </aside>
+</main>
+
+<aside>
+    <h1>Complementary</h1>
+</aside>
+
+
+<script type="text/javascript">
+
+    var rules = [].concat(
+        AriaMappings.Html5.All,
+        { type: "role", role: "search", selector: "nav.search" },
+        { type: "role", role: null, selector: ".no-role", specificity: "1,0,0,0" }
+    );
+
+    DomMapper.run(rules);
+
+    /* ALTERNATIVELY...
+
+    var factory = new DomMapper.RulesFactory();
+
+    factory.append(AriaMappings.Html5);
+
+    factory.append([
+        { type: "role", role: "search", selector: "nav.search" },
+        { type: "role", role: null, selector: ".no-role" }
+    ]);
+
+    factory.generate().run();
+    */
+
+</script>
+</body>
+</html>
