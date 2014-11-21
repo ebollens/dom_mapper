@@ -1,1 +1,4 @@
-var AriaMappings = {};
+var AriaMappings = {
+  Framework: {},
+  Html5: {}
+};

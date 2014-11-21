@@ -1,5 +1,1 @@
-AriaMappings.Html5 = {
-
-  All: []
-
-};
+AriaMappings.Html5.All = [];

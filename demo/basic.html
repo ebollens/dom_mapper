@@ -27,6 +27,10 @@
     <h1>Page Header</h1>
 </header>
 
+<div role="banner">
+
+</div>
+
 <main>
     <header>
         <h2>Section Header</h2>
@@ -52,27 +56,31 @@
 
 <script type="text/javascript">
 
-    var rules = [].concat(
-        AriaMappings.Html5.All,
-        { type: "role", role: "search", selector: "nav.search" },
-        { type: "role", role: null, selector: ".no-role", specificity: "1,0,0,0" }
-    );
+    (function(){
 
-    DomMapper.run(rules);
+        var rules = [].concat(
+            AriaMappings.Html5.All,
+            { type: "role", role: "search", selector: "nav.search" },
+            { type: "role", role: null, selector: ".no-role", specificity: "1,0,0,0" }
+        );
 
-    /* ALTERNATIVELY...
+        DomMapper.run(rules);
 
-    var factory = new DomMapper.RulesFactory();
+        /* ALTERNATIVELY...
 
-    factory.append(AriaMappings.Html5);
+        var factory = new DomMapper.RulesFactory();
 
-    factory.append([
-        { type: "role", role: "search", selector: "nav.search" },
-        { type: "role", role: null, selector: ".no-role" }
-    ]);
+        factory.append(AriaMappings.Html5);
 
-    factory.generate().run();
-    */
+        factory.append([
+            { type: "role", role: "search", selector: "nav.search" },
+            { type: "role", role: null, selector: ".no-role" }
+        ]);
+
+        factory.generate().run();
+        */
+
+    })();
 
 </script>
 </body>
