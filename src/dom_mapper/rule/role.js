@@ -10,7 +10,7 @@ DomMapper.Rule.Role = function(options){
     elements = null;
 
     if(options.elements)
-      elements = typeof options.elements == 'function' ? options.elements() : options.elements;
+      elements = typeof options.elements == 'function' ? options.elements.call(__self__) : options.elements;
 
     if(options.specificity)
       specificity = options.specificity;

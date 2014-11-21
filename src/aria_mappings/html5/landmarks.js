@@ -8,7 +8,6 @@ AriaMappings.Html5.Landmarks = (function(){
         for(var i in rawElements){
           var element = rawElements[i], skip = false;
           for(var parent = element.parentNode; parent.tagName.toLowerCase() != 'body'; parent = parent.parentNode) {
-            console.log(parent.tagName.toLowerCase());
             if (notInElements.indexOf(parent.tagName.toLowerCase()) >= 0) {
               skip = true;
               break;
@@ -39,7 +38,13 @@ AriaMappings.Html5.Landmarks = (function(){
       type: "role",
       role: m.role,
       selector: m.sel,
-      elements: m.one ? function(){ return firstSelectorNotInSectionalElement(m.sel); } : null
+      elements: m.one ? function(){
+        if(!this.getContext().querySelectorAll('[role="'+ m.role+'"]').length) {
+          return firstSelectorNotInSectionalElement(m.sel);
+        }else{
+          return [];
+        }
+      } : null
     };
   }).concat({
     type: "role",
